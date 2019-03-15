@@ -11,20 +11,30 @@ class ESCAPE_API APlayableCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-public:
+private:
 	// Sets default values for this character's properties
 	APlayableCharacter();
+	~APlayableCharacter();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
+	virtual void Jump() override;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// HP 바와 스태미너 바 UI 업데이트
+	void SetHPGaugeBar();
+	void SetStaminaGaugeBar();
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void JumpAction();
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PlayDeadAnimation();
@@ -39,20 +49,26 @@ public:
 	FORCEINLINE uint8 GetCharID() { return CharID; }
 
 	// 기본 HP와 스태미너를 정의하는 함수
+	UFUNCTION(BlueprintCallable)
 	void SetHP(float NewValue);
+	UFUNCTION(BlueprintCallable)
 	void SetStamina(float NewValue);
 
 	// Damage를 입거나 스태미너를 소모한 경우 호툴되는 함수
+	UFUNCTION(BlueprintCallable)
 	void DecreaseHP(float NewValue);
+	UFUNCTION(BlueprintCallable)
 	void DecreaseStamina(float NewValue);
 
 	// 체력 및 스태미너 회복할 때 호출되는 함수
+	UFUNCTION(BlueprintCallable)
 	void RecoverHP(float NewValue);
+	UFUNCTION(BlueprintCallable)
 	void RecoverStamina(float NewValue);
 
 private:
 	UPROPERTY()
-	UClass* PlayerInfoUI;
+	class UUIPlayerInfo* PlayerInfoUI;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")

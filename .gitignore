@@ -1,0 +1,8 @@
+/Saved
+/Build
+/.vs
+/.git
+/Intermediate
+*.sln
+*_BuiltData.uasset
+/Escape.png

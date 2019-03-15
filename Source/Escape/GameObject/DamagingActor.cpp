@@ -20,7 +20,6 @@ void ADamagingActor::TakeDamage(APawn * NewCharacter)
 		return;
 	}
 	MyChar->DecreaseHP(Damage);
-	UE_LOG(LogTemp, Warning, TEXT("Current HP : %f"), MyChar->GetCurrentHP());
 }
 
 // Called when the game starts or when spawned
