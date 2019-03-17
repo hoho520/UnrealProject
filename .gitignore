@@ -7,3 +7,4 @@
 *.sln
 *_BuiltData.uasset
 /Escape.png
+*.VC.db
