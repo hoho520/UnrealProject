@@ -71,6 +71,10 @@ private:
 	class UUIPlayerInfo* PlayerInfoUI;
 
 protected:
+	/*UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class USpringArmComponent* SpringArm;
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class UCameraComponent* Camera;*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
 	float CurrentHP = 100.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")

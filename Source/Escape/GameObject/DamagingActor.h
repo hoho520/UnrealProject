@@ -26,8 +26,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void TakeDamage(APawn* NewCharacter);
+	UFUNCTION(BlueprintCallable)
+	void SetIsActorEnabled(bool bResult) { bIsEnable = bResult;	}
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor_Setting")
 	float Damage = 10.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor_Setting")
+	bool bIsEnable = true;
 };

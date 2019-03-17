@@ -10,6 +10,10 @@ APlayableCharacter::APlayableCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	//Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	//SpringArm->SetupAttachment(GetCapsuleComponent());
+	//Camera->SetupAttachment(SpringArm);
 }
 
 APlayableCharacter::~APlayableCharacter()
@@ -22,18 +26,18 @@ void APlayableCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetHP(100.f);
-	SetStamina(100.f);
-	
 	PlayerInfoUI = AEscapeHUD::GetPlayerInfo();
 	check(PlayerInfoUI);
+
+	SetHP(100.f);
+	SetStamina(100.f);
 }
 
 void APlayableCharacter::Jump()
 {
 	Super::Jump();
 
-	DecreaseStamina(5.f);
+	//DecreaseStamina(5.f);
 }
 
 // Called every frame
