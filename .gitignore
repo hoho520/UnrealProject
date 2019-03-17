@@ -3,6 +3,7 @@
 /.vs
 /.git
 /Intermediate
+/DerivedDataCache
 *.sln
 *_BuiltData.uasset
 /Escape.png
