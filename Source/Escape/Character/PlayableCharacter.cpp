@@ -3,6 +3,8 @@
 #include "PlayableCharacter.h"
 #include "EscapeHUD.h"
 #include "UI/UIPlayerInfo.h"
+#include "UI/UIDeathPanel.h"
+#include "GameFramework/GameModeBase.h"
 
 // Sets default values
 APlayableCharacter::APlayableCharacter()
@@ -19,6 +21,7 @@ APlayableCharacter::APlayableCharacter()
 APlayableCharacter::~APlayableCharacter()
 {
 	PlayerInfoUI = nullptr;
+	DeathPanelUI = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -27,10 +30,11 @@ void APlayableCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	PlayerInfoUI = AEscapeHUD::GetPlayerInfo();
-	check(PlayerInfoUI);
-
-	SetHP(100.f);
-	SetStamina(100.f);
+	if (PlayerInfoUI)
+	{
+		SetHP(100.f);
+		SetStamina(100.f);
+	}
 }
 
 void APlayableCharacter::Jump()
@@ -82,7 +86,11 @@ void APlayableCharacter::SetStamina(float NewValue)
 
 void APlayableCharacter::SetHPGaugeBar()
 {
-	PlayerInfoUI->SetHPProgressBar(CurrentHP / MaxHP);
+	float HP_Per = CurrentHP / MaxHP;
+	PlayerInfoUI->SetHPProgressBar(HP_Per);
+	DeathPanelUI = AEscapeHUD::GetDeathPanel();
+	if (DeathPanelUI)
+		DeathPanelUI->SetBloodImgAndTextByPlayerHealth(HP_Per);
 }
 
 void APlayableCharacter::SetStaminaGaugeBar()

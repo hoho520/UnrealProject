@@ -16,13 +16,14 @@ void AEscapeHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	check(HUDUI);
-
-	auto HudUi = CreateWidget<UUIMainHUDPanel>(GetWorld(), HUDUI);
-	if (HudUi)
+	if (HUDUI)
 	{
-		HudUi->AddToViewport();
-		UUIMainHUDPanel::SetMainHUDInstance(HudUi);
+		auto HudUi = CreateWidget<UUIMainHUDPanel>(GetWorld(), HUDUI);
+		if (HudUi)
+		{
+			HudUi->AddToViewport();
+			UUIMainHUDPanel::SetMainHUDInstance(HudUi);
+		}
 	}
 }
 
@@ -35,5 +36,12 @@ UUIPlayerInfo* AEscapeHUD::GetPlayerInfo()
 {
 	if (GetHUDPanelUI().IsValid())
 		return GetHUDPanelUI()->GetPlayerInfoUI();
+	return nullptr;
+}
+
+UUIDeathPanel * AEscapeHUD::GetDeathPanel()
+{
+	if (GetHUDPanelUI().IsValid())
+		return GetHUDPanelUI()->GetDeathPanel();
 	return nullptr;
 }

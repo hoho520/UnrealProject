@@ -36,10 +36,12 @@ void UUIPlayerInfo::SetCharIcon(APawn * NewPawn)
 
 void UUIPlayerInfo::SetHPProgressBar(float NewValue)
 {
-	HP_Bar->SetPercent(NewValue);
+	if (HP_Bar)
+		HP_Bar->SetPercent(NewValue);
 }
 
 void UUIPlayerInfo::SetStaminaProgressBar(float NewValue)
 {
-	Stamina_Bar->SetPercent(NewValue);
+	if (Stamina_Bar)
+		Stamina_Bar->SetPercent(NewValue);
 }

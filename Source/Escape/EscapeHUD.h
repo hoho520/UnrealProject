@@ -11,6 +11,7 @@
  */
 class UUIMainHUDPanel;
 class UUIPlayerInfo;
+class UUIDeathPanel;
 
 UCLASS()
 class ESCAPE_API AEscapeHUD : public AHUD
@@ -26,6 +27,7 @@ protected:
 public:
 	static TWeakObjectPtr<UUIMainHUDPanel> GetHUDPanelUI();
 	static UUIPlayerInfo* GetPlayerInfo();
+	static UUIDeathPanel* GetDeathPanel();
 
 protected:
 	UPROPERTY()

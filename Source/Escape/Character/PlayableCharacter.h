@@ -69,6 +69,8 @@ public:
 private:
 	UPROPERTY()
 	class UUIPlayerInfo* PlayerInfoUI;
+	UPROPERTY()
+	class UUIDeathPanel* DeathPanelUI;
 
 protected:
 	/*UPROPERTY(VisibleAnywhere, Category = "Camera")

@@ -2,6 +2,7 @@
 
 #include "UIMainHUDPanel.h"
 #include "UIPlayerInfo.h"
+#include "UIDeathPanel.h"
 
 TWeakObjectPtr<UUIMainHUDPanel> UUIMainHUDPanel::MainHUD_Instance = nullptr;
 
@@ -22,6 +23,13 @@ UUIPlayerInfo * UUIMainHUDPanel::GetPlayerInfoUI()
 {
 	if (PlayerInfo)
 		return PlayerInfo;
+	return nullptr;
+}
+
+UUIDeathPanel * UUIMainHUDPanel::GetDeathPanel()
+{
+	if (DeathPanel)
+		return DeathPanel;
 	return nullptr;
 }
 

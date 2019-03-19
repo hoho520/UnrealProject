@@ -10,6 +10,7 @@
  ∏ﬁ¿Œ HUD
  */
 class UUIPlayerInfo;
+class UUIDeathPanel;
 
 UCLASS()
 class ESCAPE_API UUIMainHUDPanel : public UUserWidget
@@ -23,6 +24,8 @@ public:
 	static TWeakObjectPtr<UUIMainHUDPanel> GetMainHUDPanel();
 	UFUNCTION(BlueprintCallable)
 	UUIPlayerInfo* GetPlayerInfoUI();
+	UFUNCTION(BlueprintCallable)
+	UUIDeathPanel* GetDeathPanel();
 
 	static void SetMainHUDInstance(UUserWidget* NewWidget);
 
@@ -32,4 +35,6 @@ private:
 protected:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UUIPlayerInfo* PlayerInfo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UUIDeathPanel* DeathPanel;
 };
