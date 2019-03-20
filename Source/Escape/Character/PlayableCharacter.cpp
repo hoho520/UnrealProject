@@ -2,8 +2,11 @@
 
 #include "PlayableCharacter.h"
 #include "EscapeHUD.h"
+#include "UI/UIMainHUDPanel.h"
 #include "UI/UIPlayerInfo.h"
 #include "UI/UIDeathPanel.h"
+#include "UI/UIAttackSkill.h"
+#include "GameObject/SkillActor.h"
 #include "GameFramework/GameModeBase.h"
 
 // Sets default values
@@ -22,6 +25,7 @@ APlayableCharacter::~APlayableCharacter()
 {
 	PlayerInfoUI = nullptr;
 	DeathPanelUI = nullptr;
+	AttackSkillUI = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -68,6 +72,30 @@ void APlayableCharacter::JumpAction()
 	{
 		Jump();
 	}
+}
+
+void APlayableCharacter::OnFireSkill(TSubclassOf<AActor> NewActorClass)
+{
+	const FVector SpawnLocation = GetActorLocation();
+	const FRotator SpawnRotation = GetControlRotation();
+	if (NewActorClass)
+	{
+		auto Skill = GetWorld()->SpawnActor<ASkillActor>(NewActorClass, SpawnLocation, SpawnRotation);
+	}
+}
+
+void APlayableCharacter::ShowAimmingPoint(bool bAimming)
+{
+	auto HudPanel = AEscapeHUD::GetHUDPanelUI();
+	if (HudPanel.IsValid())
+		HudPanel->SetCrosshairVisibility(bAimming);
+}
+
+void APlayableCharacter::ShowSkillCoolTime(float NewCoolTime)
+{
+	AttackSkillUI = AEscapeHUD::GetAttackSkill();
+	if (AttackSkillUI)
+		AttackSkillUI->SetSkillImageAndText(NewCoolTime);
 }
 
 void APlayableCharacter::SetHP(float NewValue)

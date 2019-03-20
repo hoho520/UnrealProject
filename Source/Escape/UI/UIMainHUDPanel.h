@@ -9,8 +9,10 @@
 /**
  ∏ﬁ¿Œ HUD
  */
+class UImage;
 class UUIPlayerInfo;
 class UUIDeathPanel;
+class UUIAttackSkill;
 
 UCLASS()
 class ESCAPE_API UUIMainHUDPanel : public UUserWidget
@@ -26,7 +28,10 @@ public:
 	UUIPlayerInfo* GetPlayerInfoUI();
 	UFUNCTION(BlueprintCallable)
 	UUIDeathPanel* GetDeathPanel();
+	UFUNCTION(BlueprintCallable)
+	UUIAttackSkill* GetAttackSkill();
 
+	void SetCrosshairVisibility(bool bTrue);
 	static void SetMainHUDInstance(UUserWidget* NewWidget);
 
 private:
@@ -37,4 +42,8 @@ protected:
 	UUIPlayerInfo* PlayerInfo;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UUIDeathPanel* DeathPanel;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UUIAttackSkill* AttackSkill;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* Crosshair;
 };

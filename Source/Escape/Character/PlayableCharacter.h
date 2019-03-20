@@ -35,6 +35,12 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable)
 	void JumpAction();
+	UFUNCTION(BlueprintCallable)
+	void OnFireSkill(TSubclassOf<AActor> NewActorClass);
+	UFUNCTION(BlueprintCallable)
+	void ShowAimmingPoint(bool bAimming);
+	UFUNCTION(BlueprintCallable)
+	void ShowSkillCoolTime(float NewCoolTime);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PlayDeadAnimation();
@@ -71,6 +77,8 @@ private:
 	class UUIPlayerInfo* PlayerInfoUI;
 	UPROPERTY()
 	class UUIDeathPanel* DeathPanelUI;
+	UPROPERTY()
+	class UUIAttackSkill* AttackSkillUI;
 
 protected:
 	/*UPROPERTY(VisibleAnywhere, Category = "Camera")

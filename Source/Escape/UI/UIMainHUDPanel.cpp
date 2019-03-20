@@ -1,8 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UIMainHUDPanel.h"
-#include "UIPlayerInfo.h"
-#include "UIDeathPanel.h"
+#include "Image.h"
 
 TWeakObjectPtr<UUIMainHUDPanel> UUIMainHUDPanel::MainHUD_Instance = nullptr;
 
@@ -31,6 +30,19 @@ UUIDeathPanel * UUIMainHUDPanel::GetDeathPanel()
 	if (DeathPanel)
 		return DeathPanel;
 	return nullptr;
+}
+
+UUIAttackSkill * UUIMainHUDPanel::GetAttackSkill()
+{
+	if (AttackSkill)
+		return AttackSkill;
+	return nullptr;
+}
+
+void UUIMainHUDPanel::SetCrosshairVisibility(bool bTrue)
+{
+	if (Crosshair)
+		Crosshair->SetVisibility(bTrue ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 }
 
 void UUIMainHUDPanel::SetMainHUDInstance(UUserWidget * NewWidget)

@@ -12,6 +12,7 @@
 class UUIMainHUDPanel;
 class UUIPlayerInfo;
 class UUIDeathPanel;
+class UUIAttackSkill;
 
 UCLASS()
 class ESCAPE_API AEscapeHUD : public AHUD
@@ -28,6 +29,7 @@ public:
 	static TWeakObjectPtr<UUIMainHUDPanel> GetHUDPanelUI();
 	static UUIPlayerInfo* GetPlayerInfo();
 	static UUIDeathPanel* GetDeathPanel();
+	static UUIAttackSkill* GetAttackSkill();
 
 protected:
 	UPROPERTY()

@@ -45,3 +45,10 @@ UUIDeathPanel * AEscapeHUD::GetDeathPanel()
 		return GetHUDPanelUI()->GetDeathPanel();
 	return nullptr;
 }
+
+UUIAttackSkill * AEscapeHUD::GetAttackSkill()
+{
+	if (GetHUDPanelUI().IsValid())
+		return GetHUDPanelUI()->GetAttackSkill();
+	return nullptr;
+}
