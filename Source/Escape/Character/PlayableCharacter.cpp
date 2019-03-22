@@ -23,9 +23,9 @@ APlayableCharacter::APlayableCharacter()
 
 APlayableCharacter::~APlayableCharacter()
 {
-	PlayerInfoUI = nullptr;
-	DeathPanelUI = nullptr;
-	AttackSkillUI = nullptr;
+	//PlayerInfoUI = nullptr;
+	//DeathPanelUI = nullptr;
+	//AttackSkillUI = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -57,6 +57,10 @@ void APlayableCharacter::Tick(float DeltaTime)
 	{
 		RecoverStamina(0.01f);
 	}
+	if (CurrentHP < MaxHP && CurrentHP > 0)
+	{
+		RecoverHP(0.01f);
+	}
 }
 
 // Called to bind functionality to input
@@ -76,11 +80,16 @@ void APlayableCharacter::JumpAction()
 
 void APlayableCharacter::OnFireSkill(TSubclassOf<AActor> NewActorClass)
 {
-	const FVector SpawnLocation = GetActorLocation();
-	const FRotator SpawnRotation = GetControlRotation();
+	FVector SpawnLocation = GetActorLocation() + FVector(0.f, -100.f, 20.f);
+	FRotator SpawnRotation = GetControlRotation();
+	FVector WorldLocation;
+	FVector WorldDirection;
+	GetWorld()->GetFirstPlayerController()->DeprojectMousePositionToWorld(WorldLocation, WorldDirection);
+	const FRotator Rot(0.f, 0.f, 0.f);
+	auto ResultLocation = Rot.RotateVector(WorldDirection) + SpawnLocation;
 	if (NewActorClass)
 	{
-		auto Skill = GetWorld()->SpawnActor<ASkillActor>(NewActorClass, SpawnLocation, SpawnRotation);
+		GetWorld()->SpawnActor<ASkillActor>(NewActorClass, ResultLocation, SpawnRotation);
 	}
 }
 

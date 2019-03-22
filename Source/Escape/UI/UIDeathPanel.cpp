@@ -7,7 +7,7 @@
 void UUIDeathPanel::SetBloodImgAndTextByPlayerHealth(float HealthPercent)
 {
 	float RemainHealthPer = 1 - HealthPercent;
-	BloodImg->SetRenderOpacity(RemainHealthPer);
+	BloodImg->SetRenderOpacity(RemainHealthPer >= 0.3f ? RemainHealthPer : 0);
 	bool bIsDead = HealthPercent == 0.f;
 	DieText->SetVisibility(bIsDead ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 	if (bIsDead)

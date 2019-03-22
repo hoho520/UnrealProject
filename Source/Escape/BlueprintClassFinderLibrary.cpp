@@ -19,8 +19,8 @@ UBlueprintClassFinderLibrary::UBlueprintClassFinderLibrary()
 
 UBlueprintClassFinderLibrary::~UBlueprintClassFinderLibrary()
 {
-	HUD_Instance = nullptr;
-	Char_Instance = nullptr;
+	//HUD_Instance = nullptr;
+	//Char_Instance = nullptr;
 }
 
 UClass * UBlueprintClassFinderLibrary::GetHUDClass()

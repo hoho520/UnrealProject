@@ -23,4 +23,3 @@ void ASkillActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
