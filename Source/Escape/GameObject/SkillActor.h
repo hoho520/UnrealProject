@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "SkillActor.generated.h"
 
 UCLASS()
@@ -11,7 +12,7 @@ class ESCAPE_API ASkillActor : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+private:
 	// Sets default values for this actor's properties
 	ASkillActor();
 
@@ -22,7 +23,15 @@ protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+public:
+	UFUNCTION(BlueprintCallable)
+	void OnCollision(AActor* NewActor);
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor_Option")
-	float MoveSpeed = 500.f;
+	float MoveSpeed = 2000.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor_Option")
+	float ActorLifeSpan = 3.0f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UProjectileMovementComponent* ProjectileMovement;
 };

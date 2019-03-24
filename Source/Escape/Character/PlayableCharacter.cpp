@@ -15,17 +15,7 @@ APlayableCharacter::APlayableCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
-	//Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	//SpringArm->SetupAttachment(GetCapsuleComponent());
-	//Camera->SetupAttachment(SpringArm);
-}
-
-APlayableCharacter::~APlayableCharacter()
-{
-	//PlayerInfoUI = nullptr;
-	//DeathPanelUI = nullptr;
-	//AttackSkillUI = nullptr;
+	MyCharType = E_CharacterType::Owner;
 }
 
 // Called when the game starts or when spawned
@@ -39,13 +29,6 @@ void APlayableCharacter::BeginPlay()
 		SetHP(100.f);
 		SetStamina(100.f);
 	}
-}
-
-void APlayableCharacter::Jump()
-{
-	Super::Jump();
-
-	//DecreaseStamina(5.f);
 }
 
 // Called every frame
@@ -74,22 +57,28 @@ void APlayableCharacter::JumpAction()
 {
 	if (CurrentStamina >= 10.f)
 	{
-		Jump();
+		Super::Jump();
 	}
 }
 
 void APlayableCharacter::OnFireSkill(TSubclassOf<AActor> NewActorClass)
 {
-	FVector SpawnLocation = GetActorLocation() + FVector(0.f, -100.f, 20.f);
-	FRotator SpawnRotation = GetControlRotation();
-	FVector WorldLocation;
-	FVector WorldDirection;
-	GetWorld()->GetFirstPlayerController()->DeprojectMousePositionToWorld(WorldLocation, WorldDirection);
-	const FRotator Rot(0.f, 0.f, 0.f);
-	auto ResultLocation = Rot.RotateVector(WorldDirection) + SpawnLocation;
-	if (NewActorClass)
+	if (!bIsCoolTime)
 	{
-		GetWorld()->SpawnActor<ASkillActor>(NewActorClass, ResultLocation, SpawnRotation);
+		FVector SpawnLocation = GetActorLocation() + FVector(50.f, -100.f, 20.f);
+		FRotator SpawnRotation = GetControlRotation();
+		FVector WorldLocation;
+		FVector WorldDirection;
+		GetWorld()->GetFirstPlayerController()->DeprojectMousePositionToWorld(WorldLocation, WorldDirection);
+		const FRotator Rot(0.f, 0.f, 0.f);
+		auto ResultLocation = Rot.RotateVector(WorldDirection) + SpawnLocation;
+		if (NewActorClass)
+		{
+			GetWorld()->SpawnActor<ASkillActor>(NewActorClass, ResultLocation, SpawnRotation);
+		}
+
+		ShowSkillCoolTime(SkillCoolTime);
+		DecreaseStamina(SkillCost);
 	}
 }
 

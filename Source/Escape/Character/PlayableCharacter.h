@@ -3,25 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "EscapeGameCharacter.h"
 #include "PlayableCharacter.generated.h"
 
 UCLASS()
-class ESCAPE_API APlayableCharacter : public ACharacter
+class ESCAPE_API APlayableCharacter : public AEscapeGameCharacter
 {
 	GENERATED_BODY()
 
 private:
 	// Sets default values for this character's properties
 	APlayableCharacter();
-	~APlayableCharacter();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	virtual void Jump() override;
-
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -81,10 +78,14 @@ private:
 	class UUIAttackSkill* AttackSkillUI;
 
 protected:
-	/*UPROPERTY(VisibleAnywhere, Category = "Camera")
-	class USpringArmComponent* SpringArm;
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	class UCameraComponent* Camera;*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
+	bool bIsAimming = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
+	bool bIsCoolTime = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
+	float SkillCoolTime = 5.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
+	float SkillCost = 20.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
 	float CurrentHP = 100.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player_Settings")
