@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "EscapeGameCharacter.generated.h"
 
+/**
+ Escape Game용 기본 캐릭터 클래스
+ */
 UENUM(BlueprintType)
 enum class E_CharacterType : uint8
 {

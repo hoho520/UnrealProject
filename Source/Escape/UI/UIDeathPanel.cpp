@@ -4,6 +4,13 @@
 #include "Image.h"
 #include "TextBlock.h"
 
+void UUIDeathPanel::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	PanelLayer = E_PanelLayer::Death;
+}
+
 void UUIDeathPanel::SetBloodImgAndTextByPlayerHealth(float HealthPercent)
 {
 	float RemainHealthPer = 1 - HealthPercent;

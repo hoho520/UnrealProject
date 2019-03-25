@@ -5,6 +5,7 @@
 #include "Blueprint/UserWidget.h"
 
 UClass* UBlueprintClassFinderLibrary::HUD_Instance = nullptr;
+UClass* UBlueprintClassFinderLibrary::InvenPanel_Instance = nullptr;
 TSubclassOf<APawn> UBlueprintClassFinderLibrary::Char_Instance = nullptr;
 
 UBlueprintClassFinderLibrary::UBlueprintClassFinderLibrary()
@@ -12,6 +13,9 @@ UBlueprintClassFinderLibrary::UBlueprintClassFinderLibrary()
 	static ConstructorHelpers::FClassFinder<UUserWidget> HUDClass(TEXT("/Game/GameContents/GUI/Blueprint/BP_UIHUD.BP_UIHUD_C"));
 	if (HUDClass.Succeeded())
 		HUD_Instance = HUDClass.Class;
+	static ConstructorHelpers::FClassFinder<UUserWidget> InvenPanelClass(TEXT("/Game/GameContents/GUI/Blueprint/BP_UIInventoryPanel.BP_UIInventoryPanel_C"));
+	if (InvenPanelClass.Succeeded())
+		InvenPanel_Instance = InvenPanelClass.Class;
 	static ConstructorHelpers::FClassFinder<APawn> CharacterClass(TEXT("/Game/GameContents/ParagonShinbi/Characters/Heroes/Shinbi/ShinbiPlayerCharacter.ShinbiPlayerCharacter_C"));
 	if (CharacterClass.Succeeded())
 		Char_Instance = CharacterClass.Class;
@@ -27,6 +31,13 @@ UClass * UBlueprintClassFinderLibrary::GetHUDClass()
 {
 	if (HUD_Instance)
 		return HUD_Instance;
+	return nullptr;
+}
+
+UClass * UBlueprintClassFinderLibrary::GetInventoryPanelClass()
+{
+	if (InvenPanel_Instance)
+		return InvenPanel_Instance;
 	return nullptr;
 }
 

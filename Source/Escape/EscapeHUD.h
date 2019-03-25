@@ -10,6 +10,7 @@
  HUD System
  */
 class UUIMainHUDPanel;
+class UUIInventoryPanel;
 class UUIPlayerInfo;
 class UUIDeathPanel;
 class UUIAttackSkill;
@@ -27,6 +28,7 @@ protected:
 
 public:
 	static TWeakObjectPtr<UUIMainHUDPanel> GetHUDPanelUI();
+	static TWeakObjectPtr<UUIInventoryPanel> GetInventoryPanel();
 	static UUIPlayerInfo* GetPlayerInfo();
 	static UUIDeathPanel* GetDeathPanel();
 	static UUIAttackSkill* GetAttackSkill();
@@ -34,5 +36,8 @@ public:
 protected:
 	UPROPERTY()
 	UClass* HUDUI;
+
+private:
+	static TWeakObjectPtr<UUIInventoryPanel> InvenPanel;
 
 };

@@ -8,7 +8,8 @@ TWeakObjectPtr<UUIMainHUDPanel> UUIMainHUDPanel::MainHUD_Instance = nullptr;
 void UUIMainHUDPanel::NativeConstruct()
 {
 	Super::NativeConstruct();
-
+	
+	PanelLayer = E_PanelLayer::HUD;
 }
 
 TWeakObjectPtr<UUIMainHUDPanel> UUIMainHUDPanel::GetMainHUDPanel()

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "UIPanelBase.h"
 #include "UIDeathPanel.generated.h"
 
 /**
@@ -12,11 +12,13 @@
 class UTextBlock;
 class UImage;
 UCLASS()
-class ESCAPE_API UUIDeathPanel : public UUserWidget
+class ESCAPE_API UUIDeathPanel : public UUIPanelBase
 {
 	GENERATED_BODY()
 
 protected:
+	virtual void NativeConstruct() override;
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartFadeOutAnimation();
 	

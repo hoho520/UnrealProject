@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "UIPanelBase.h"
 #include "UIMainHUDPanel.generated.h"
 
 /**
@@ -15,7 +15,7 @@ class UUIDeathPanel;
 class UUIAttackSkill;
 
 UCLASS()
-class ESCAPE_API UUIMainHUDPanel : public UUserWidget
+class ESCAPE_API UUIMainHUDPanel : public UUIPanelBase
 {
 	GENERATED_BODY()
 	

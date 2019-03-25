@@ -3,6 +3,9 @@
 #include "EscapeHUD.h"
 #include "BlueprintClassFinderLibrary.h"
 #include "UI/UIMainHUDPanel.h"
+#include "UI/UIInventoryPanel.h"
+
+TWeakObjectPtr<UUIInventoryPanel> AEscapeHUD::InvenPanel = nullptr;
 
 AEscapeHUD::AEscapeHUD()
 {
@@ -21,8 +24,18 @@ void AEscapeHUD::BeginPlay()
 		auto HudUi = CreateWidget<UUIMainHUDPanel>(GetWorld(), HUDUI);
 		if (HudUi)
 		{
-			HudUi->AddToViewport();
+			HudUi->AddToViewport((uint8)HudUi->GetPanelLayer());
 			UUIMainHUDPanel::SetMainHUDInstance(HudUi);
+		}
+	}
+	auto InvenClass = UBlueprintClassFinderLibrary::GetInventoryPanelClass();
+	if (InvenClass)
+	{
+		InvenPanel = CreateWidget<UUIInventoryPanel>(GetWorld(), InvenClass);
+		if (InvenPanel.IsValid())
+		{
+			InvenPanel->AddToViewport((uint8)InvenPanel->GetPanelLayer());
+			InvenPanel->SetVisibility(ESlateVisibility::Collapsed);
 		}
 	}
 }
@@ -30,6 +43,11 @@ void AEscapeHUD::BeginPlay()
 TWeakObjectPtr<UUIMainHUDPanel> AEscapeHUD::GetHUDPanelUI()
 {
 	return UUIMainHUDPanel::GetMainHUDPanel();
+}
+
+TWeakObjectPtr<UUIInventoryPanel> AEscapeHUD::GetInventoryPanel()
+{
+	return InvenPanel;
 }
 
 UUIPlayerInfo* AEscapeHUD::GetPlayerInfo()

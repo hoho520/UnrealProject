@@ -20,9 +20,11 @@ private:
 
 public:
 	static UClass* GetHUDClass();
+	static UClass* GetInventoryPanelClass();
 	static TSubclassOf<APawn> GetPlayableCharacterClass();
 
 private:
 	static UClass* HUD_Instance;
+	static UClass* InvenPanel_Instance;
 	static TSubclassOf<APawn> Char_Instance;
 };
