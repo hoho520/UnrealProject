@@ -15,6 +15,8 @@ class UUIPlayerInfo;
 class UUIDeathPanel;
 class UUIAttackSkill;
 
+enum class ESlateVisibility : uint8;
+
 UCLASS()
 class ESCAPE_API AEscapeHUD : public AHUD
 {
@@ -32,6 +34,8 @@ public:
 	static UUIPlayerInfo* GetPlayerInfo();
 	static UUIDeathPanel* GetDeathPanel();
 	static UUIAttackSkill* GetAttackSkill();
+
+	static void SetInventoryPanelVisibility(ESlateVisibility InVisibility);
 
 protected:
 	UPROPERTY()

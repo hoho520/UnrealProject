@@ -63,7 +63,7 @@ void APlayableCharacter::JumpAction()
 
 void APlayableCharacter::OnFireSkill(TSubclassOf<AActor> NewActorClass)
 {
-	if (!bIsCoolTime)
+	if (CurrentStamina >= SkillCost)
 	{
 		FVector SpawnLocation = GetActorLocation() + FVector(50.f, -100.f, 20.f);
 		FRotator SpawnRotation = GetControlRotation();

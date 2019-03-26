@@ -19,6 +19,8 @@ void AEscapeHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetWorld()->GetFirstPlayerController()->bShowMouseCursor = true;
+
 	if (HUDUI)
 	{
 		auto HudUi = CreateWidget<UUIMainHUDPanel>(GetWorld(), HUDUI);
@@ -50,7 +52,7 @@ TWeakObjectPtr<UUIInventoryPanel> AEscapeHUD::GetInventoryPanel()
 	return InvenPanel;
 }
 
-UUIPlayerInfo* AEscapeHUD::GetPlayerInfo()
+UUIPlayerInfo * AEscapeHUD::GetPlayerInfo()
 {
 	if (GetHUDPanelUI().IsValid())
 		return GetHUDPanelUI()->GetPlayerInfoUI();
@@ -69,4 +71,10 @@ UUIAttackSkill * AEscapeHUD::GetAttackSkill()
 	if (GetHUDPanelUI().IsValid())
 		return GetHUDPanelUI()->GetAttackSkill();
 	return nullptr;
+}
+
+void AEscapeHUD::SetInventoryPanelVisibility(ESlateVisibility InVisibility)
+{
+	if (InvenPanel.IsValid())
+		InvenPanel->SetVisibility(InVisibility);
 }

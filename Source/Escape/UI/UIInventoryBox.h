@@ -10,7 +10,7 @@
 /**
  인벤토리 박스 클래스
  */
-class UTileView;
+class UEscapeTileView;
 class UButton;
 UCLASS()
 class ESCAPE_API UUIInventoryBox : public UUserWidget
@@ -19,6 +19,7 @@ class ESCAPE_API UUIInventoryBox : public UUserWidget
 	
 protected:
 	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 
 public:
 	// 닫기 버튼 이벤크 델리게이트 정의
@@ -36,9 +37,12 @@ protected:
 	TSubclassOf<UUserWidget> InvenSlotClass;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	UTileView* InvenTileView;
+	UEscapeTileView* InvenTileView;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* CloseBtn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inventory")
+	int32 InvenMaxSize = 30;
 
 private:
 	FAction CloseEventDelegate;

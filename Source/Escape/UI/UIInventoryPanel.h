@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -7,8 +7,9 @@
 #include "UIInventoryPanel.generated.h"
 
 /**
- * 
+ 인벤토리 패널
  */
+class UUIInventoryBox;
 UCLASS()
 class ESCAPE_API UUIInventoryPanel : public UUIPanelBase
 {
@@ -16,4 +17,11 @@ class ESCAPE_API UUIInventoryPanel : public UUIPanelBase
 
 protected:
 	virtual void NativeConstruct() override;
+
+public:
+	void PanelClose();
+
+protected:
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UUIInventoryBox* InventoryBox;
 };
