@@ -12,7 +12,7 @@ void UUIInventorySlot::NativeConstruct()
 
 void UUIInventorySlot::SetItemSlot(int32 NewItemID)
 {
-
+	ItemID = NewItemID;
 
 	SlotBtn->SetVisibility(ESlateVisibility::Visible);
 	ItemImg->SetVisibility(ESlateVisibility::HitTestInvisible);

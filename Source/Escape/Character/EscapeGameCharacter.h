@@ -40,7 +40,7 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	E_CharacterType GetCharacterType() { return MyCharType; }
+	FORCEINLINE E_CharacterType GetCharacterType() const { return MyCharType; }
 
 protected:
 	// 캐릭터 타입

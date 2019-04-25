@@ -21,6 +21,8 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
+	FORCEINLINE int32 GetItemID() const { return ItemID; }
+
 	void SetItemSlot(int32 NewItemID);
 	void SetEmptySlot();
 
@@ -29,4 +31,7 @@ protected:
 	UButton* SlotBtn;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* ItemImg;
+
+private:
+	int32 ItemID = 0;
 };

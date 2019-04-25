@@ -45,8 +45,8 @@ public:
 	void PlayHitAnimation();
 
 	// 현재 플레이어의 HP 또는 스태미너 값을 호출
-	FORCEINLINE float GetCurrentHP() { return CurrentHP; }
-	FORCEINLINE float GetCurrentStamina() { return CurrentStamina; }
+	FORCEINLINE float GetCurrentHP() const { return CurrentHP; }
+	FORCEINLINE float GetCurrentStamina() const { return CurrentStamina; }
 
 	// 플레이어 ID 값 호출
 	FORCEINLINE uint8 GetCharID() { return CharID; }

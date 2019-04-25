@@ -2,6 +2,8 @@
 
 #include "UIInventoryBox.h"
 #include "UIInventorySlot.h"
+#include <list>
+#include <map>
 #include "Button.h"
 #include "CustomWidget/EscapeTileView.h"
 
@@ -32,7 +34,17 @@ void UUIInventoryBox::AddInventorySlot()
 	{
 		InvenTileView->AddItem(ItemSlot);
 		ItemSlot->SetEmptySlot();
+		SlotArray.Emplace(ItemSlot);
 	}
+
+	TArray<int> a;
+	a.Add(1);
+	std::list<int> b;
+	b.push_back(1);
+	b.push_front(2);
+
+	auto MyLambda = [MySize = InvenMaxSize](int a) { return a > MySize; };
+	decltype(auto) DeclLambda = MyLambda;
 }
 
 void UUIInventoryBox::RefreshTileView()
@@ -43,4 +55,18 @@ void UUIInventoryBox::RefreshTileView()
 void UUIInventoryBox::Close()
 {
 	CloseEventDelegate.ExecuteIfBound();
+	InvenTileView->ScrollToTop();
+}
+
+UUIInventorySlot * UUIInventoryBox::GetSelectedInventorySlot(int32 index)
+{
+	if (SlotArray.Num() > 0)
+	{
+		for (const auto & SlotData : SlotArray)
+		{
+			if (SlotData->GetItemID() == index)
+				return SlotData;
+		}
+	}
+	return nullptr;
 }

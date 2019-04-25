@@ -12,6 +12,7 @@
  */
 class UEscapeTileView;
 class UButton;
+class UUIInventorySlot;
 UCLASS()
 class ESCAPE_API UUIInventoryBox : public UUserWidget
 {
@@ -31,6 +32,8 @@ public:
 	// 닫기 이벤트
 	UFUNCTION()
 	void Close();
+	UFUNCTION()
+	UUIInventorySlot* GetSelectedInventorySlot(int32 index);
 
 protected:
 	UPROPERTY(EditInstanceOnly)
@@ -43,6 +46,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inventory")
 	int32 InvenMaxSize = 30;
+
+	UPROPERTY()
+	TArray<UUIInventorySlot*> SlotArray;
 
 private:
 	FAction CloseEventDelegate;
