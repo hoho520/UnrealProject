@@ -8,6 +8,7 @@ AEscapeGameCharacter::AEscapeGameCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SetCameraMode(CameraMode);
 }
 
 // Called when the game starts or when spawned
@@ -31,3 +32,17 @@ void AEscapeGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 }
 
+void AEscapeGameCharacter::SetCameraMode(E_CameraMode NewCameraMode)
+{
+	CameraMode = NewCameraMode;
+
+	switch (CameraMode)
+	{
+	case E_CameraMode::TopView:
+		break;
+	case E_CameraMode::QuarterView:
+		break;
+	case E_CameraMode::BackView:
+		break;
+	}
+}

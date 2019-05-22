@@ -23,7 +23,7 @@ protected:
 public:
 	FORCEINLINE int32 GetItemID() const { return ItemID; }
 
-	void SetItemSlot(int32 NewItemID);
+	void SetItemSlot(const int32 & NewItemID);
 	void SetEmptySlot();
 
 protected:

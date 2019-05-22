@@ -10,7 +10,7 @@ void UUIInventorySlot::NativeConstruct()
 
 }
 
-void UUIInventorySlot::SetItemSlot(int32 NewItemID)
+void UUIInventorySlot::SetItemSlot(const int32 & NewItemID)
 {
 	ItemID = NewItemID;
 
@@ -20,6 +20,8 @@ void UUIInventorySlot::SetItemSlot(int32 NewItemID)
 
 void UUIInventorySlot::SetEmptySlot()
 {
+	ItemID = 0;
+
 	SlotBtn->SetVisibility(ESlateVisibility::HitTestInvisible);
 	ItemImg->SetVisibility(ESlateVisibility::Collapsed);
 }

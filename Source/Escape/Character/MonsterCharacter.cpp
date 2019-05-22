@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "MonsterCharacter.h"
+#include "AI/MonsterAIController.h"
 
 // Sets default values
 AMonsterCharacter::AMonsterCharacter()
@@ -8,7 +9,10 @@ AMonsterCharacter::AMonsterCharacter()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	MyCharType = E_CharacterType::Enemy;
+	//MyCharType = E_CharacterType::Enemy;
+
+	AIControllerClass = AMonsterAIController::StaticClass();
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 }
 
 // Called when the game starts or when spawned
@@ -16,6 +20,14 @@ void AMonsterCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+// Called when the game ends or when destroyed
+void AMonsterCharacter::BeginDestroy()
+{
+	Super::BeginDestroy();
+
+	OnAttackEnd.Clear();
 }
 
 // Called every frame
@@ -30,5 +42,10 @@ void AMonsterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AMonsterCharacter::Attack()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Attacking!!!"));
 }
 

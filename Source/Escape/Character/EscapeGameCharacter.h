@@ -20,6 +20,14 @@ enum class E_CharacterType : uint8
 	NPC, 
 };
 
+UENUM(BlueprintType)
+enum class E_CameraMode : uint8
+{
+	TopView = 0,
+	QuarterView,
+	BackView,
+};
+
 UCLASS()
 class ESCAPE_API AEscapeGameCharacter : public ACharacter
 {
@@ -39,6 +47,8 @@ protected:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void SetCameraMode(E_CameraMode NewCameraMode);
+
 public:
 	FORCEINLINE E_CharacterType GetCharacterType() const { return MyCharType; }
 
@@ -46,4 +56,7 @@ protected:
 	// 캐릭터 타입
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character_Data")
 	E_CharacterType MyCharType = E_CharacterType::Owner;
+	// 컨트롤 모드
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character_Data")
+	E_CameraMode CameraMode = E_CameraMode::TopView;
 };

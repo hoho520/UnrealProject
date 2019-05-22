@@ -18,6 +18,9 @@ private:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	// Called when the game ends or when destroyed
+	virtual void BeginDestroy() override;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

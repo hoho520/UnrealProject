@@ -31,6 +31,15 @@ void APlayableCharacter::BeginPlay()
 	}
 }
 
+void APlayableCharacter::BeginDestroy()
+{
+	Super::BeginDestroy();
+
+	PlayerInfoUI = nullptr;
+	DeathPanelUI = nullptr;
+	AttackSkillUI = nullptr;
+}
+
 // Called every frame
 void APlayableCharacter::Tick(float DeltaTime)
 {
@@ -91,7 +100,8 @@ void APlayableCharacter::ShowAimmingPoint(bool bAimming)
 
 void APlayableCharacter::ShowSkillCoolTime(float NewCoolTime)
 {
-	AttackSkillUI = AEscapeHUD::GetAttackSkill();
+	if (AttackSkillUI == nullptr)
+		AttackSkillUI = AEscapeHUD::GetAttackSkill();
 	if (AttackSkillUI)
 		AttackSkillUI->SetSkillImageAndText(NewCoolTime);
 }
@@ -114,7 +124,8 @@ void APlayableCharacter::SetHPGaugeBar()
 {
 	float HP_Per = CurrentHP / MaxHP;
 	PlayerInfoUI->SetHPProgressBar(HP_Per);
-	DeathPanelUI = AEscapeHUD::GetDeathPanel();
+	if (DeathPanelUI == nullptr)
+		DeathPanelUI = AEscapeHUD::GetDeathPanel();
 	if (DeathPanelUI)
 		DeathPanelUI->SetBloodImgAndTextByPlayerHealth(HP_Per);
 }

@@ -25,7 +25,7 @@ class ESCAPE_API UUIPanelBase : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-	E_PanelLayer GetPanelLayer() { return PanelLayer; }
+	FORCEINLINE E_PanelLayer GetPanelLayer() const { return PanelLayer; }
 
 protected:
 	E_PanelLayer PanelLayer;

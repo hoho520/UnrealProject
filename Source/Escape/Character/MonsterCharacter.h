@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EscapeGameCharacter.h"
+#include "GameFramework/Pawn.h"
 #include "MonsterCharacter.generated.h"
 
+DECLARE_MULTICAST_DELEGATE(FOnAttackEndDelegate)
+
 UCLASS()
-class ESCAPE_API AMonsterCharacter : public AEscapeGameCharacter
+class ESCAPE_API AMonsterCharacter : public APawn
 {
 	GENERATED_BODY()
 
@@ -19,6 +21,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Called when the game ends or when destroyed
+	virtual void BeginDestroy() override;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -26,5 +31,10 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
+	void Attack();
 
+protected:
+
+public:
+	FOnAttackEndDelegate OnAttackEnd;
 };
