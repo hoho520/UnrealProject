@@ -23,6 +23,9 @@ protected:
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp,
 		uint8* NodeMemory, float DeltaSeconds) override;
 
+public:
+	void SetIsAttacking(bool bTrue) { bIsAttacking = bTrue; }
+
 private:
 	bool bIsAttacking = false;
 
